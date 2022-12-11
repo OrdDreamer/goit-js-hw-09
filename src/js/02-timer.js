@@ -29,6 +29,7 @@ function setTimeLeft(timeLeft) {
 
 function stopTimer() {
   clearInterval(timer.intervalID);
+  setTimeLeft(0);
   datePicker?.removeAttribute("disabled");
   updateStartButton();
 }
@@ -39,7 +40,6 @@ function startTimer() {
     if (timeLeft > 0) {
       setTimeLeft(timeLeft);
     } else {
-      setTimeLeft(0);
       stopTimer();
     }
   }, 1000);
