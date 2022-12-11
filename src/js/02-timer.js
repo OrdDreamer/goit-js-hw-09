@@ -46,6 +46,21 @@ function startTimer() {
 }
 
 
+function showError() {
+  if (errorView.message) {
+    errorView.message.textContent = "Invalid date! Please enter a date later than the current one.";
+  }
+  if (errorView.container) {
+    clearInterval(timer.errorTimeoutID);
+
+    errorView.container.classList.add("show");
+
+    timer.errorTimeoutID = setTimeout(() => {
+      errorView.container.classList.remove("show");
+    }, 3000);
+  }
+}
+
 function updateStartButton() {
   if (verifyDate(timer.selectedDate)) {
     startButton?.removeAttribute("disabled");
@@ -70,10 +85,15 @@ function updateTimerView() {
   }
 }
 
-
 function onDatePickerClose(selectedDates) {
   timer.selectedDate = new Date(selectedDates[0]);
   updateStartButton();
+
+  if (!verifyDate(timer.selectedDate)) {
+    showError();
+  } else if (errorView.container) {
+    errorView.container.classList.remove("show");
+  }
 }
 
 function onStartButtonClick() {
@@ -90,11 +110,16 @@ const timerView = {
   hours: document.querySelector("span[data-hours]"),
   minutes: document.querySelector("span[data-minutes]"),
   seconds: document.querySelector("span[data-seconds]"),
+};
+const errorView = {
+  container: document.querySelector("div.error"),
+  message: document.querySelector("p.error-message"),
 }
 
 const timer = {
   selectedDate: new Date(),
   intervalID: null,
+  errorTimeoutID: null,
   days: 0,
   hours: 0,
   minutes: 0,
