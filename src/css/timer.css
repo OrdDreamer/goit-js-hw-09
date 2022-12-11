@@ -1,0 +1,62 @@
+* {
+  font-family: 'Martian Mono', monospace;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.form {
+  display: flex;
+  align-items: stretch;
+  height: 70px;
+}
+
+.start-input {
+  font-size: 20px;
+  padding: 20px;
+  border: 2px solid #212121;
+}
+
+.start-input:disabled {
+  opacity: 0.5;
+}
+
+.start-button {
+  border: none;
+  color: rgb(250, 250, 250);
+  background-color: #212121;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 20px;
+
+  cursor: pointer;
+}
+
+.start-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.timer {
+  display: flex;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.field .value {
+  font-size: 60px;
+}
+
+.field .label {
+  font-size: 20px;
+  text-transform: uppercase;
+}
